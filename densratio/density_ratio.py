@@ -39,6 +39,24 @@ Function to Estimate Density Ratio:
   
 """[1:-1] % dict(method=self.method, kernel_info=self.kernel_info, alpha=self.alpha, theta=my_format(self.theta), lambda_=self.lambda_, alpha_PE=self.alpha_PE, alpha_KL=self.alpha_KL)
 
+class DensityRatios:
+    """
+    Density Ratio.
+    Returning only alpha PE and alpha KL
+    """
+    def __init__(self, method, alpha, theta, lambda_, alpha_PE, alpha_KL, kernel_info, compute_density_ratio):
+        self.method = method
+        self.alpha = alpha
+        self.theta = theta
+        self.lambda_ = lambda_
+        self.alpha_PE = alpha_PE
+        self.alpha_KL = alpha_KL
+        self.kernel_info = kernel_info
+        self.compute_density_ratio = compute_density_ratio
+
+    def __str__(self):
+        return alpha_PE, alpha_KL
+
 
 class KernelInfo:
     """Kernel Information."""
