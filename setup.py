@@ -1,33 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from setuptools import setup, find_packages
-
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+from setuptools import setup
 
 setup(
-    name='densratio',
+    name='rulsif',
     version='0.2.2.9000',
     description='A Python Package for Density Ratio Estimation',
-    long_description=long_description,
-    long_description_content_type='text/markdown',
-    url='https://github.com/hoxo-m/densratio_py',
+    url='https://github.com/kyosek/Ralative-unconstrained-Least-Squares-Fitting.git',
     author='Koji Makiyama, Ameya Daigavane',
-    author_email='hoxo.smile@gmail.com',
-    classifiers=[
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Topic :: Scientific/Engineering :: Artificial Intelligence',
-    ],
-    keywords='density ratio estimation, anomaly detection, change point detection, covariate shift',
-    packages=find_packages(exclude=('tests', 'docs')),
+    packages=['rulsif'],
     install_requires=['numpy'],
     project_urls={
         'Bug Reports': 'https://github.com/hoxo-m/densratio_py/issues',
         'Say Thanks!': 'https://saythanks.io/to/hoxo-m',
         'Source': 'https://github.com/hoxo-m/densratio_py',
     },
-    license="MIT + file LICENSE",
-    test_suite='tests',
+    license='unlicense'
 )

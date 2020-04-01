@@ -126,8 +126,9 @@ def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100, verbose=True)
         print("Approximate alpha-relative KL-divergence = {:03.2f}".format(alpha_KL))
 
     kernel_info = KernelInfo(kernel_type="Gaussian", kernel_num=kernel_num, sigma=sigma, centers=centers)
-    result = DensityRatios(method="RuLSIF", alpha=alpha, theta=theta, lambda_=lambda_, alpha_PE=alpha_PE, alpha_KL=alpha_KL,
-                          kernel_info=kernel_info, compute_density_ratio=alpha_density_ratio)
+    result = DensityRatios(method="RuLSIF", alpha=alpha, theta=theta, lambda_=lambda_, 
+                            alpha_PE=alpha_PE, alpha_KL=alpha_KL,
+                            kernel_info=kernel_info, compute_density_ratio=alpha_density_ratio)
 
     if verbose:
         print("RuLSIF completed.")
