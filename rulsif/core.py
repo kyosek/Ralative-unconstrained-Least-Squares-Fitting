@@ -35,14 +35,6 @@ def densratio(x, y, alpha=0, sigma_range="auto", lambda_range="auto", kernel_num
     Usage::
       >>> from scipy.stats import norm
       >>> from densratio import densratio
-
-      >>> x = norm.rvs(size=200, loc=1, scale=1./8)
-      >>> y = norm.rvs(size=200, loc=1, scale=1./2)
-      >>> result = densratio(x, y, alpha=0.7)
-      >>> print(result)
-
-      >>> density_ratio = result.compute_density_ratio(y)
-      >>> print(density_ratio)
     """
 
     x = to_numpy_matrix(x)
