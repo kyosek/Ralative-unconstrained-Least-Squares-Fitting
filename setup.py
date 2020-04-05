@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='rulsif',
-    version='0.2.2.9000',
+    version='1.0.0.1',
     description='A Python Package for Density Ratio Estimation',
     url='https://github.com/kyosek/Ralative-unconstrained-Least-Squares-Fitting.git',
     author='Koji Makiyama, Ameya Daigavane',
