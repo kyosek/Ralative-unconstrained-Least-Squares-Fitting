@@ -17,7 +17,7 @@ from .density_ratio import DensityRatio, KernelInfo
 from .helpers import to_numpy_matrix
 
 
-def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100, verbose=True):
+def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100):
     """
     Estimation of the alpha-Relative Density Ratio p(x)/p_alpha(x) by RuLSIF
     (Relative Unconstrained Least-Square Importance Fitting)
@@ -50,9 +50,10 @@ def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100, verbose=True)
     if len(sigma_range) == 1 and len(lambda_range) == 1:
         sigma = sigma_range[0]
         lambda_ = lambda_range[0]
+
     else:
         # Grid-search cross-validation for optimal kernel and regularization parameters.
-        opt_params = search_sigma_and_lambda(x, y, alpha, centers, sigma_range, lambda_range, verbose)
+        opt_params = search_sigma_and_lambda(x, y, alpha, centers, sigma_range, lambda_range)
         sigma = opt_params["sigma"]
         lambda_ = opt_params["lambda"]
 
