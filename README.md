@@ -1,20 +1,9 @@
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
 # A Python Package for Density Ratio Estimation
+
+**This repository is forked from https://github.com/hoxo-m/densratio_py to change the outputs of the function.** Instead of returning strings of detailed results and parameters, this module only returns the estimated values of The alpha-relative PE-divergence and KL-divergence between `p(x)` and `q(x)`
 
 ### *Koji MAKIYAMA (hoxo-m), Ameya Daigavane (ameya98)*
 
-<!-- badges: start -->
-
-[![Build
-Status](https://travis-ci.org/hoxo-m/densratio_py.svg?branch=master)](https://travis-ci.org/hoxo-m/densratio_py)
-[![PyPI](https://img.shields.io/pypi/v/densratio.svg)](https://pypi.python.org/pypi/densratio)
-[![PyPI](https://img.shields.io/pypi/dm/densratio.svg)](https://pypi.python.org/pypi/densratio)
-[![Coverage
-Status](https://coveralls.io/repos/github/hoxo-m/densratio_py/badge.svg?branch=master)](https://coveralls.io/github/hoxo-m/densratio_py?branch=master)
-[![Say
-Thanks\!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg)](https://saythanks.io/to/hoxo-m)
-<!-- badges: end -->
 
 ## 1\. Overview
 
@@ -57,28 +46,8 @@ print(densratio_obj)
 
 gives the following output:
 
-    #> Method: RuLSIF
-    #> 
-    #> Alpha: 0.1
-    #> 
-    #> Kernel Information:
-    #>   Kernel type: Gaussian
-    #>   Number of kernels: 100
-    #>   Bandwidth(sigma): 0.1
-    #>   Centers: matrix([[-0.09591373],..
-    #> 
-    #> Kernel Weights (theta):
-    #>   array([0.04990797, 0.0550548 , 0.04784736, 0.04951904, 0.04840418,..
-    #> 
-    #> Regularization Parameter (lambda): 0.1
-    #> 
-    #> Alpha-Relative PE-Divergence: 0.6187941335987046
-    #> 
-    #> Alpha-Relative KL-Divergence: 0.7037648129307482
-    #> 
-    #> Function to Estimate Density Ratio:
-    #>   compute_density_ratio(x)
-    #> 
+    #> densratio_obj
+    #> (0.6536158708555955, 0.6214285743087546)
 
 In this case, the true density ratio `w(x)` is known, so we can compare
 `w(x)` with the estimated density ratio `w-hat(x)`. The code below gives
@@ -105,17 +74,17 @@ plt.show()
 ## 2\. Installation
 
 You can install the package from
-[PyPI](https://pypi.org/project/densratio/).
+[PyPI](https://pypi.org/project/rulsif/).
 
 ``` :sh
-$ pip install densratio
+$ pip install rulsif
 ```
 
 Also, you can install the package from
-[GitHub](https://github.com/hoxo-m/densratio_py).
+[GitHub](https://github.com/kyosek/Relative-unconstrained-Least-Squares-Fitting.git).
 
 ``` :sh
-$ pip install git+https://github.com/hoxo-m/densratio_py.git
+$ pip install git+https://github.com/kyosek/Relative-unconstrained-Least-Squares-Fitting.git
 ```
 
 The source code for **densratio** package is available on GitHub at
@@ -183,47 +152,12 @@ compute the alpha-relative density ratio at the passed coordinates.
 
 `densratio()` outputs the result like as follows:
 
-    #> Method: RuLSIF
-    #> 
-    #> Alpha: 0
-    #> 
-    #> Kernel Information:
-    #>   Kernel type: Gaussian
-    #>   Number of kernels: 100
-    #>   Bandwidth(sigma): 0.1
-    #>   Centers: matrix([[0.92113356],..
-    #> 
-    #> Kernel Weights (theta):
-    #>   array([0.08848922, 0.03377533, 0.0753727 , 0.06141277, 0.02543963,..
-    #> 
-    #> Regularization Parameter (lambda): 1.0
-    #> 
-    #> Alpha-Relative PE-Divergence: 0.9635169300831035
-    #> 
-    #> Alpha-Relative KL-Divergence: 0.8388266265473269
-    #> 
-    #> Function to Estimate Density Ratio:
-    #>   compute_density_ratio(x)
-    #> 
+    #> densratio_obj
+    #> (0.6536158708555955, 0.6214285743087546)
 
-  - **Method** is fixed as RuLSIF.
-  - **Kernel type** is fixed as Gaussian RBF.
-  - **Number of kernels** is the number of kernels in the linear model.
-    You can change by setting `kernel_num` parameter. In default,
-    `kernel_num = 100`.
-  - **Bandwidth(sigma)** is the Gaussian kernel bandwidth. In default,
-    `sigma = "auto"`, the algorithm automatically select an optimal
-    value by cross validation. If you set `sigma` a number, that will be
-    used. If you set `sigma` a numeric array, the algorithm select an
-    optimal value in them by cross validation.
-  - **Centers** are centers of Gaussian kernels in the linear model.
-    These are selected at random from the data sample `x` underlying a
-    numerator distribution `p(x)`. You can find the whole values in
-    `result.kernel_info.centers`.
-  - **Kernel weights(theta)** are theta parameters in the linear kernel
-    model. You can find these values in `result.theta`.
-  - **The function to estimate the alpha-relative density ratio** is
-    named `compute_density_ratio()`.
+  - **First value** is an estimated relative PE Divergence.
+  - **Second value** is an estimated KL Divergence.
+  
 
 ## 4\. Multi Dimensional Data Samples
 
@@ -247,65 +181,10 @@ print(densratio_obj)
 ```
 
 gives the following output:
-
-    #> Method: RuLSIF
-    #> 
-    #> Alpha: 0
-    #> 
-    #> Kernel Information:
-    #>   Kernel type: Gaussian
-    #>   Number of kernels: 100
-    #>   Bandwidth(sigma): 0.3
-    #>   Centers: matrix([[1.01477443, 1.38864061],..
-    #> 
-    #> Kernel Weights (theta):
-    #>   array([0.06151164, 0.08012094, 0.10467369, 0.13868176, 0.14917063,..
-    #> 
-    #> Regularization Parameter (lambda): 0.04
-    #> 
-    #> Alpha-Relative PE-Divergence: 0.653615870855595
-    #> 
-    #> Alpha-Relative KL-Divergence: 0.6214285743087549
-    #> 
-    #> Function to Estimate Density Ratio:
-    #>   compute_density_ratio(x)
-    #> 
-
-In this case, as well, we can compare the true density ratio with the
-estimated density ratio.
-
-``` python
-from matplotlib import pyplot as plt
-from numpy import linspace, dstack, meshgrid, concatenate
-
-def true_alpha_density_ratio(x):
-    return multivariate_normal.pdf(x, [1., 1.], [[1. / 8, 0], [0, 1. / 8]]) / \
-           (alpha * multivariate_normal.pdf(x, [1., 1.], [[1. / 8, 0], [0, 1. / 8]]) + (1 - alpha) * multivariate_normal.pdf(x, [1., 1.], [[1. / 2, 0], [0, 1. / 2]]))
-
-def estimated_alpha_density_ratio(x):
-    return densratio_obj.compute_density_ratio(x)
-
-range_ = np.linspace(0, 2, 200)
-grid = np.concatenate(np.dstack(np.meshgrid(range_, range_)))
-levels = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4.5]
-
-plt.figure(figsize=(10, 4))
-plt.subplot(1, 2, 1)
-plt.contourf(range_, range_, true_alpha_density_ratio(grid).reshape(200, 200), levels)
-#> <matplotlib.contour.QuadContourSet object at 0x1a2067f470>
-plt.colorbar()
-#> <matplotlib.colorbar.Colorbar object at 0x1a22fb04e0>
-plt.title("True Alpha-Relative Density Ratio")
-plt.subplot(1, 2, 2)
-plt.contourf(range_, range_, estimated_alpha_density_ratio(grid).reshape(200, 200), levels)
-#> <matplotlib.contour.QuadContourSet object at 0x1a20643550>
-plt.colorbar()
-#> <matplotlib.colorbar.Colorbar object at 0x1a232486a0>
-plt.title("Estimated Alpha-Relative Density Ratio")
-plt.show()
 ```
-
-![](README_files/figure-gfm/compare-2d-1.png)<!-- -->
+>>> densratio_obj
+(0.6536158708555955, 0.6214285743087546)
+```
 
 ## 5\. References
 

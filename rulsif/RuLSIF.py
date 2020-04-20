@@ -47,26 +47,14 @@ def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100, verbose=True)
     # Randomly take a subset of x, to identify centers for the kernels.
     centers = x[randint(nx, size=kernel_num)]
 
-    if verbose:
-        # print("RuLSIF starting...")
-
     if len(sigma_range) == 1 and len(lambda_range) == 1:
         sigma = sigma_range[0]
         lambda_ = lambda_range[0]
     else:
-        if verbose:
-            # print("Searching for the optimal sigma and lambda...")
-
         # Grid-search cross-validation for optimal kernel and regularization parameters.
         opt_params = search_sigma_and_lambda(x, y, alpha, centers, sigma_range, lambda_range, verbose)
         sigma = opt_params["sigma"]
         lambda_ = opt_params["lambda"]
-
-        if verbose:
-            # print("Found optimal sigma = {:.3f}, lambda = {:.3f}.".format(sigma, lambda_))
-
-    if verbose:
-        # print("Optimizing theta...")
 
     phi_x = compute_kernel_Gaussian(x, centers, sigma)
     phi_y = compute_kernel_Gaussian(y, centers, sigma)
@@ -121,17 +109,10 @@ def RuLSIF(x, y, alpha, sigma_range, lambda_range, kernel_num=100, verbose=True)
     alpha_PE = alpha_PE_divergence(x, y)
     alpha_KL = alpha_KL_divergence(x, y)
 
-    if verbose:
-        # print("Approximate alpha-relative PE-divergence = {:03.2f}".format(alpha_PE))
-        # print("Approximate alpha-relative KL-divergence = {:03.2f}".format(alpha_KL))
-
     kernel_info = KernelInfo(kernel_type="Gaussian", kernel_num=kernel_num, sigma=sigma, centers=centers)
     result = DensityRatio(method="RuLSIF", alpha=alpha, theta=theta, lambda_=lambda_, 
                             alpha_PE=alpha_PE, alpha_KL=alpha_KL,
                             kernel_info=kernel_info, compute_density_ratio=alpha_density_ratio)
-
-    if verbose:
-        # print("RuLSIF completed.")
 
     return alpha_PE, alpha_KL
 
@@ -171,9 +152,6 @@ def search_sigma_and_lambda(x, y, alpha, centers, sigma_range, lambda_range, ver
             # Squared loss of RuLSIF, without regularization term.
             # Directly related to the negative of the PE-divergence.
             score = (r_y.T.dot(r_y).A1 / 2 - r_x.sum(axis=0)) / n_min
-
-            if verbose:
-                # print("sigma = %.5f, lambda = %.5f, score = %.5f" % (sigma, lambda_, score))
 
             if score < score_new:
                 score_new = score
