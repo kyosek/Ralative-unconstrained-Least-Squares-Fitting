@@ -11,8 +11,6 @@ setup(
     packages=['rulsif'],
     install_requires=['numpy'],
     project_urls={
-        'Bug Reports': 'https://github.com/hoxo-m/densratio_py/issues',
-        'Say Thanks!': 'https://saythanks.io/to/hoxo-m',
         'Source': 'https://github.com/hoxo-m/densratio_py',
     },
     license='unlicense'
